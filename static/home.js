@@ -19,12 +19,12 @@ fetch('/home',{
 const results = document.getElementById('results');
 	//data is is from our promise chain. holding what py sent us back in json.
 	// to acces specific info use . whatever you used in py file. so worker comes from py file. data.worker
-	results.textContent = `
-	Worker name: ${data.worker}
-	Service: ${data.service}
-	Amount Charged($)${data.amount}
-
-	`;
+	results.textContent = "";
+	data.totals.forEach(entry => {
+	const {worker,amount} = entry;
+	results.textContent += ` ${worker} has earned $${amount} \n`;
+	});
+	
 
 console.log("test1",data);
 })
