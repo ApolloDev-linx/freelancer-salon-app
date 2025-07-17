@@ -1,7 +1,8 @@
-document.getElementById("submit").addEventListener("click", ()=>{
-let worker = document.getElementById("worker").value;
+function main(e){
+	e.preventDefault();
 let service = document.getElementById("service").value;
-let amount = document.getElementById("amount").value;
+let worker = document.getElementById("worker").value;
+let amount = parseInt(document.getElementById("amount").value);
 
 let payload = {
 	worker:worker,
@@ -15,10 +16,25 @@ fetch('/home',{
 		})
 .then(res => res.json())
 .then(data =>{
+const results = document.getElementById('results');
+	//data is is from our promise chain. holding what py sent us back in json.
+	// to acces specific info use . whatever you used in py file. so worker comes from py file. data.worker
+	results.textContent = `
+	Worker name: ${data.worker}
+	Service: ${data.service}
+	Amount Charged($)${data.amount}
+
+	`;
+
 console.log("test1",data);
 })
 .catch(error => {
 console.error("Problems sending data:", error);
 })
+}
+document.addEventListener('DOMContentLoaded',() =>{
+let btn = document.getElementById('submit');
+	btn.addEventListener('click',(e) => main(e));
 });
+
 
