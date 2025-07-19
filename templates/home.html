@@ -8,8 +8,22 @@
 	</head>
 <body>
 	<h1>Salon Earnings Tracker </h1>
+	<h3> <i>&copy;Judah Nails </i> </h3>
 
 	<form id="entryForm">
+		<label for = "day"> Select Day: </label>
+		<select id="day" name = "day">
+			<option value = "Monday">Monday </option>
+			<option value = "Tuesday">Tuesday </option>
+			<option value = "Wednesday">Wednesday </option>
+			<option value = "Thursday">Thursday </option>
+			<option value = "Friday">Friday </option>
+			<option value = "Saturday">Saturday</option>
+		</select>	
+
+
+
+
 		<label for="worker">Worker Name. </label>
 		<input type="text" id="worker" name="worker" required/>
 
@@ -20,6 +34,7 @@
 		<input type"number" id="amount" name="amount" required>
 
 		<button id="submit" type="submit"> Add Entry </button>
+		<button id = "reset">Reset Week </button>
 	</form>
 	<div id="results">
 		<strong> Name: </strong>

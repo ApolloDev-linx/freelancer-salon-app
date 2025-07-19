@@ -10,6 +10,9 @@ h1{
 text-align: center;
 
 }
+h3{
+text-align:center;
+}
 label{
 display:block;
 margin-top: 10px;
@@ -22,17 +25,48 @@ margin-top: 5px;
 margin-bottom: 15px;
 box-sizing: border-box;
 }
-button{
+#submit{
 padding: 10px 20px;
 background-color: blue;
 color:white;
 border:none;
 cursor:pointer;
 width: 100%;
+margin: 10px;
+
 }
-#results{
-margin-top: 20px;
-background-color: brown;
-padding: 15px;
-border-radius: 5px;
+#reset{
+padding: 10px 20px;
+background-color: red;
+color:white;
+border:none;
+cursor:pointer;
+width: 100%;
+margin: 10px;
+
+}
+.day-section{
+margin-bottom: 20px;
+padding: 10px;
+border: 1px solid #aaa;
+border-radius: 8px;
+background-color: #f4f4f4;
+}
+#results {
+  display: flex;
+  gap: 20px;
+}
+
+.worker-column {
+  padding: 10px;
+  border: 1px solid #aaa;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  width: 200px;
+}
+.total-line{
+font-weight: bold;
+border-top: 1px solid gold;
+margin-top:10px;
+padding-top: 5px;
 }
