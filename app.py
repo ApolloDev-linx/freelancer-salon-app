@@ -13,10 +13,17 @@ days ={
         "Friday":[],
         "Saturday":[]}
 
+
+
+
 @app.route('/home')
 def home():
     return render_template('home.html')
 
+
+@app.route('/')
+def index():
+    return home()
 
 @app.route('/home', methods=["POST"])
 def home_page():
@@ -65,6 +72,8 @@ def reset():
         })
     total.clear()
     return jsonify({"message":"Reset complete"})
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
