@@ -4,6 +4,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 #hashmap
+tips = {}
 total ={}
 days ={
         "Monday": [],
@@ -31,13 +32,19 @@ def home_page():
     worker = data.get("worker")
     service = data.get("service")
     amount = float(data.get("amount",0))
+    tip = float(data.get("tip",0))
     day = data.get("day")
 
-    entry = {"worker":worker, "service": service, "amount":amount}
-
+    entry = {"worker":worker, "service": service, "amount":amount, "tip":tip}
+    
     if day in days:
         days[day].append(entry)
-    
+
+
+    if worker in tips:
+        tips[worker] += tip
+    else:
+        tips[worker] = tip
 
 
 
@@ -53,7 +60,8 @@ def home_page():
     return jsonify({ "totals":[{"worker":worker, "amount": round(amount,2)}
                       for worker, amount in total.items()],
                     "days":days,
-                    "total":total
+                    "total":total,
+                    "tips": tips
                     })
                             
 

@@ -3,13 +3,15 @@ function main(e){
 let service = document.getElementById("service").value;
 let worker = document.getElementById("worker").value;
 let amount = parseInt(document.getElementById("amount").value);
+let tip = parseInt(document.getElementById("tip").value) || 0;
 let day = document.getElementById("day").value;
 
 let payload = {
 	worker:worker,
 	service:service,
 	amount:amount,
-	day:day
+	day:day,
+	tip:tip
 		};
 fetch('/home',{
 	method: "POST",
@@ -28,13 +30,13 @@ fetch('/home',{
         const entries = data.days[day];
 
         entries.forEach(entry => {
-          const { worker, service, amount } = entry;
+          const { worker, service, amount, tip } = entry;
 
           if (!workerColumns[worker]) {
             workerColumns[worker] = [];
           }
 
-          workerColumns[worker].push({ service, amount, day });
+          workerColumns[worker].push({ service, amount, day,tip });
         });
       }
 
@@ -49,13 +51,14 @@ fetch('/home',{
 
         workerColumns[worker].forEach(entry => {
           const line = document.createElement("p");
-          line.textContent = `${entry.service} on ${entry.day} for $${entry.amount}`;
+          line.textContent = `${entry.service} on ${entry.day} for $${entry.amount} | TIPS:$${entry.tip}`;
           workerDiv.appendChild(line);
 		        });
 	      const totalAmount = data.total[worker];
+	      const totalTips = data.tips[worker];
 		const totalLine = document.createElement("p");
 		totalLine.classList.add("total-line");
-		totalLine.textContent = `Total amount for ${worker}: $${totalAmount.toFixed(2)} `;
+		totalLine.textContent = `Total amount for ${worker}: $${totalAmount.toFixed(2)} | Tips:$${totalTips.toFixed(2)} `;
 		workerDiv.appendChild(totalLine);
 
         results.appendChild(workerDiv);
